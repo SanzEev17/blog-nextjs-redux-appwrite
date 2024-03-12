@@ -1,6 +1,6 @@
 import React from 'react'
 import RecentPosts from "@/components/RecentPosts"
-import MostPopular from './MostPopular'
+import MostPopularPosts from './MostPopularPosts'
 import FeaturedPosts from './FeaturedPosts'
 
 export default function BlogContainer() {
@@ -9,7 +9,7 @@ export default function BlogContainer() {
         <div className='flex gap-8'>
           <RecentPosts />
           <div className='w-[40%] flex flex-col items-start gap-8'>
-            <MostPopular />
+            <MostPopularPosts />
             <FeaturedPosts />
           </div>
         </div>

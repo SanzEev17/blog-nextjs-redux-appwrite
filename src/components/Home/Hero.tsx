@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
-import heroImg from "../../public/images/hero.jpg"
-import { Button } from './ui/button'
+import heroImg from "../../../public/images/hero.jpg"
+import { Button } from '../ui/button'
 
 export default function Hero() {
     return (
