@@ -11,7 +11,7 @@ type blogListType = {
 export default function BlogList({title, category, author, date}:blogListType) {
     return (
         <div className='flex flex-col justify-center gap-1'>
-            <div className='text-sm font-bold px-2 p-0.5 rounded-full bg-primary w-fit'>
+            <div className='border bg-accent text-sm font-bold px-2 p-0.5 rounded-full w-fit'>
                 {category}
             </div>
             <Link href="" className='text-lg font-bold'>
