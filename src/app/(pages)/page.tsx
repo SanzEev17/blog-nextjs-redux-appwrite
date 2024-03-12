@@ -1,7 +1,6 @@
 import BlogContainer from "@/components/BlogContainer";
-import Hero from "@/components/Home/Hero";
-import PopularCategories from "@/components/Home/PopularCategories";
-import Image from "next/image";
+import Hero from "@/components/home/Hero";
+import PopularCategories from "@/components/home/PopularCategories";
 
 export default function Home() {
   return (
