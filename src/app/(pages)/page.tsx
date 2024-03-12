@@ -1,3 +1,4 @@
+import BlogContainer from "@/components/BlogContainer";
 import Hero from "@/components/Hero";
 import PopularCategories from "@/components/PopularCategories";
 import Image from "next/image";
@@ -7,6 +8,7 @@ export default function Home() {
     <main className="px-8 lg:px-48">
       <Hero/>
       <PopularCategories/>
+      <BlogContainer />
     </main>
   );
 }
