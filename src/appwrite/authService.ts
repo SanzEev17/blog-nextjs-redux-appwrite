@@ -10,7 +10,6 @@ type LoginUserAccount = {
     email: string;
     password: string;
 }
-
 export class AuthService {
     client = new Client();
     account;
@@ -23,7 +22,7 @@ export class AuthService {
     //* create new user inside appwrite
     async createUser({ name, email, password }: CreateUserAccount) {
         try {
-            const newUser = await this.account.create(ID.unique(), name, email, password)
+            const newUser = await this.account.create(ID.unique(), email, password, name)
             if(newUser) {
                 return this.loginUser({ email, password })
             } else{
@@ -35,7 +34,7 @@ export class AuthService {
     }
     async loginUser({ email, password }: LoginUserAccount) {
         try {
-            return await this.account.createSession(email, password)
+            return await this.account.createEmailPasswordSession(email, password)
         } catch (error: any) {
             throw error
         }

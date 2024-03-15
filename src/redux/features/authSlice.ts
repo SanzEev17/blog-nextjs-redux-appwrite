@@ -10,9 +10,11 @@ type AuthState = {
     userData: UserData | null
 }
 
-const initialState:AuthState = {
-    isAuthenticated: false,
-    userData: null
+const initialState = {
+    auth: {
+        isAuthenticated: false,
+        userData: null
+    } as AuthState
 }
 
 
@@ -20,13 +22,13 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        login: (state, action:PayloadAction<AuthState>) => {
-            state.isAuthenticated = true;
-            state.userData = action.payload.userData;
+        login: (state, action:PayloadAction<UserData>) => {
+            state.auth.isAuthenticated = true;
+            state.auth.userData = action.payload;
         },
         logout: (state) => {
-            state.isAuthenticated = false;
-            state.userData = null;
+            state.auth.isAuthenticated = false;
+            state.auth.userData = null;
         }
     }
 })

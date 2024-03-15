@@ -7,10 +7,10 @@ import { Button } from '../ui/button'
 export default function Hero() {
     return (
         <section className='h-screen flex flex-col justify-center items-center gap-6'>
-            <div className='pt-8 text-3xl lg:text-[3.5rem] leading-normal tracking-wide'>
+            <div className='pt-8 text-3xl md:text-[3.5rem] leading-normal tracking-wide'>
                 <span className='font-bold'>Hey Blogger here!</span> Discover my stories and creative ideas
             </div>
-            <div className='flex flex-col-reverse lg:flex-row gap-8'>
+            <div className='flex flex-col-reverse md:flex-row gap-8'>
                 <div className='w-full flex flex-col justify-center items-start gap-5'>
                     <h1 className='title-text'>
                         Some title goes here brrr........
@@ -24,7 +24,7 @@ export default function Hero() {
                         </Link>
                     </Button>
                 </div>
-                <div className='w-full rounded-md overflow-hidden relative h-60 lg:min-h-96'>
+                <div className='w-full rounded-md overflow-hidden relative h-60 md:min-h-96'>
                     <Image
                         src={heroImg}
                         alt='Hero'
