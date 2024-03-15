@@ -1,15 +1,14 @@
-import React from 'react'
-import { recentPosts } from '@/constants/data'
-import Link from 'next/link'
-import BlogCard from './utility/BlogCard'
-import { Button } from './ui/button'
-
+import React from "react";
+import { recentPosts } from "@/constants/data";
+import Link from "next/link";
+import BlogCard from "./utility/BlogCard";
+import { Button } from "./ui/button";
 
 export default function RecentPosts() {
   return (
-    <div className='w-full'>
-      <h1 className='title-text'>Recent Posts</h1>
-      <div className='py-6 w-full flex flex-col gap-6'>
+    <div className="w-full">
+      <h1 className="title-text">Recent Posts</h1>
+      <div className="py-6 w-full flex flex-col gap-6">
         {recentPosts.map((item, index) => (
           <BlogCard
             key={index}
@@ -20,14 +19,14 @@ export default function RecentPosts() {
           />
         ))}
       </div>
-      <div className='flex justify-between'>
+      <div className="flex justify-between">
         <Button variant="outline" asChild>
-            <Link href="">Previous</Link>
+          <Link href="">Previous</Link>
         </Button>
         <Button variant="outline" asChild>
-            <Link href="">Next</Link>
+          <Link href="">Next</Link>
         </Button>
       </div>
     </div>
-  )
+  );
 }

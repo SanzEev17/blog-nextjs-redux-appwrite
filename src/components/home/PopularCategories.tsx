@@ -1,20 +1,26 @@
-import React from 'react'
-import Link from 'next/link'
-import { Button } from '../ui/button'
+import React from "react";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
-const categories = ["Food", "Travel", "Fashion", "Coding", "Politics"]
+const categories = ["food", "travel", "fashion", "coding", "politics"];
 
 export default function PopularCategories() {
   return (
-    <section className='py-8'>
-        <h1 className='title-text'>Popular Categories</h1>
-        <div className='py-8 flex flex-wrap items-center gap-7 md:gap-8'>
-            {categories.map((item, index)=>(
-              <Button key={index} size="xl" variant="outline" className='text-md' asChild>
-                <Link  href="">{item}</Link>
-              </Button>
-            ))}
-        </div>
+    <section className="py-8">
+      <h1 className="title-text">Popular Categories</h1>
+      <div className="py-8 flex flex-wrap items-center gap-7 md:gap-8">
+        {categories.map((item, index) => (
+          <Button
+            key={index}
+            size="xl"
+            variant="outline"
+            className="capitalize text-md"
+            asChild
+          >
+            <Link href={`/category/${item}`}>{item}</Link>
+          </Button>
+        ))}
+      </div>
     </section>
-  )
+  );
 }
