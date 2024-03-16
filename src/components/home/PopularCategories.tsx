@@ -17,7 +17,7 @@ export default function PopularCategories() {
             className="capitalize text-md"
             asChild
           >
-            <Link href={`/category/${item}`}>{item}</Link>
+            <Link href={`/blog/category/${item}`}>{item}</Link>
           </Button>
         ))}
       </div>

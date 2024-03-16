@@ -16,7 +16,7 @@ export default function CategoryPage({
         <h1 className="title-text py-4 bg-blue-300 text-center rounded-lg capitalize">
           {params.categorySlug} Blog
         </h1>
-        <BlogContainer />
+        <BlogContainer category={params.categorySlug} />
       </div>
     </section>
   );
