@@ -7,7 +7,7 @@ import { logout } from '@/redux/features/authSlice'
 import authService from '@/appwrite/authService'
 
 export default function AuthButton() {
-    const isAuthenticated = useAppSelector((state) => state.authReducer.auth.isAuthenticated)
+    const isAuthenticated = useAppSelector((state) => state.authReducer.isAuthenticated)
     const authButtons = [
         { name: "Login", slug: "/account/login"},
         { name: "Signup", slug: "/account/signup"},
