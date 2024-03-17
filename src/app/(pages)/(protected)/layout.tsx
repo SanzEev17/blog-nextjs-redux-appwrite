@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
 import { useAppSelector } from "@/redux/store";
 import { useRouter } from "next/navigation";
 
@@ -12,9 +12,9 @@ export default function ProtectedLayout({
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated
   );
-  if (!isAuthenticated) {
-    router.replace("/account/login");
-    return <></>;
+  if (!isAuthenticated){
+    router.replace("/account/login")
+    return null
   }
-  return children;
+  return children
 }

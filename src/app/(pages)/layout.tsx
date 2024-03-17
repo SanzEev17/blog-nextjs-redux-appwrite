@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, logout } from "@/redux/features/authSlice";
 import Header from "@/components/Header/Header";
@@ -10,17 +10,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
-    authService.getCurrentUser().then((userData) => {
-      if (userData) {
-        const { name, email } = userData;
-        dispatch(login({ name, email }));
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, []);
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          const { name, email } = userData;
+          dispatch(login({ name, email }));
+        } else {
+          dispatch(logout());
+        }
+      })
+      .finally(() => setLoading(false));
+  }, [dispatch]);
+
+  if (loading) {
+    return null
+  }
+
   return (
     <>
       <Header />

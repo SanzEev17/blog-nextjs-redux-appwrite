@@ -34,7 +34,8 @@ export default function BlogCard({
                     relative"
       >
         <Image
-          src={blogService.getImagePreview(featuredImage).toString()}
+          // src={blogService.getImagePreview(featuredImage).toString()}
+          src=""
           alt={title}
           fill
           quality={100}
