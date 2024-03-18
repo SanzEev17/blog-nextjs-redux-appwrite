@@ -3,16 +3,21 @@ import RecentPosts from "@/components/RecentPosts"
 import MostPopularPosts from './MostPopularPosts'
 import FeaturedPosts from './FeaturedPosts'
 
-export default function BlogContainer({category}:{category?:string}) {
+/**
+ * Renders a section containing recent posts, most popular posts, and optionally featured posts.
+ * @param category - Optional category of posts to display.
+ * @returns JSX.Element
+ */
+export default function BlogContainer({ category }: { category?: string }): JSX.Element {
   return (
-    <section className='py-8'>
-        <div className='flex flex-col md:flex-row gap-8'>
-          <RecentPosts />
-          <div className='md:w-[40%] flex flex-col items-start gap-8'>
-            <MostPopularPosts />
-            {!category && <FeaturedPosts />}
-          </div>
+    <section className="py-8">
+      <div className="flex flex-col md:flex-row gap-8">
+        <RecentPosts />
+        <div className="md:w-[40%] flex flex-col items-start gap-8">
+          <MostPopularPosts />
+          {!category && <FeaturedPosts />}
         </div>
-      </section>
-  )
+      </div>
+    </section>
+  );
 }

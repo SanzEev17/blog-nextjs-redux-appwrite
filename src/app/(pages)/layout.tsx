@@ -1,9 +1,10 @@
 "use client";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, logout } from "@/redux/features/authSlice";
 import Header from "@/components/Header/Header";
 import authService from "@/appwrite/authService";
+import "../globals.css";
 
 export default function RootLayout({
   children,

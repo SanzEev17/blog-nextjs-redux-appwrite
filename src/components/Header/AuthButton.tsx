@@ -6,30 +6,38 @@ import { useDispatch } from 'react-redux'
 import { logout } from '@/redux/features/authSlice'
 import authService from '@/appwrite/authService'
 
-export default function AuthButton() {
-    const isAuthenticated = useAppSelector((state) => state.authReducer.isAuthenticated)
-    const authButtons = [
-        { name: "Login", slug: "/account/login"},
-        { name: "Signup", slug: "/account/signup"},
-    ]
-    const dispatch = useDispatch()
-    const handleLogout = ()=>{
-        authService.logout()
-        .then(()=>dispatch(logout()))
-    }
-    return (
-        <div className='flex gap-3'>
-            {isAuthenticated ?
-            <Button variant="outline" onClick={handleLogout}>Logout</Button>
-            :
-            authButtons.map((item, index) => (
-                <Button key={index} variant="outline" asChild>
-                    <Link href={item.slug}>
-                        {item.name}
-                    </Link>
-                </Button>
-            ))
-        }
-        </div>
-    )
+/**
+ * Renders a button for either logging out or redirecting to login/signup pages based on the user's authentication status.
+ * @returns {JSX.Element} The rendered component.
+ */
+export default function AuthButton(): JSX.Element {
+  const isAuthenticated = useAppSelector((state) => state.authReducer.isAuthenticated);
+  const authButtons = [
+    { name: 'Login', slug: '/account/login' },
+    { name: 'Signup', slug: '/account/signup' },
+  ];
+  const dispatch = useDispatch();
+
+  /**
+   * Handles the logout action.
+   */
+  const handleLogout = (): void => {
+    authService.logout().then(() => dispatch(logout()));
+  };
+
+  return (
+    <div className="flex gap-3">
+      {isAuthenticated ? (
+        <Button variant="outline" onClick={handleLogout}>
+          Logout
+        </Button>
+      ) : (
+        authButtons.map((item, index) => (
+          <Button key={index} variant="outline" asChild>
+            <Link href={item.slug}>{item.name}</Link>
+          </Button>
+        ))
+      )}
+    </div>
+  );
 }
