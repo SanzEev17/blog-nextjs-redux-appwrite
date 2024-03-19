@@ -1,9 +1,8 @@
-import React from 'react'
+import BlogPostForm from "@/components/BlogPostForm";
+import React from "react";
 
 export default function CreateBlog() {
   return (
-    <>
-    <div>CreateBlog</div>
-    </>
-  )
+    <BlogPostForm />
+  );
 }

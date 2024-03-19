@@ -1,9 +1,6 @@
 import BlogContainer from "@/components/BlogContainer";
 import React from "react";
 
-type params = {
-  categorySlug: string;
-};
 
 export default function CategoryPage({
   params,

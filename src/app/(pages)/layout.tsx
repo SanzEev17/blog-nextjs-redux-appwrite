@@ -18,8 +18,8 @@ export default function RootLayout({
       .getCurrentUser()
       .then((userData) => {
         if (userData) {
-          const { name, email } = userData;
-          dispatch(login({ name, email }));
+          const { $id, name, email } = userData;
+          dispatch(login({ $id, name, email }));
         } else {
           dispatch(logout());
         }

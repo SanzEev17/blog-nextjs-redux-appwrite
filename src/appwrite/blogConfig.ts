@@ -18,17 +18,17 @@ export class BlogService {
 
   async createPost({
     title,
-    content,
+    blogImage,
     category,
-    uploadedAt,
-    featuredImage,
+    content,
+    uploadDate,
     userId,
   }: {
     title: string;
-    content: string;
+    blogImage: string;
     category: string;
-    uploadedAt: string;
-    featuredImage: string;
+    content: string;
+    uploadDate: string;
     userId: string;
   }): Promise<any> {
     try {
@@ -40,8 +40,8 @@ export class BlogService {
           title,
           content,
           category,
-          uploadedAt,
-          featuredImage,
+          blogImage,
+          uploadDate,
           userId,
         }
       );
@@ -51,18 +51,18 @@ export class BlogService {
     }
   }
 
-  async updatePost({
+  async updatePost(blogId:string,{
     title,
-    content,
+    blogImage,
     category,
-    featuredImage,
-    blogId,
+    content,
+    uploadDate,
   }: {
     title: string;
-    content: string;
+    blogImage: string;
     category: string;
-    featuredImage: string;
-    blogId: string;
+    content: string;
+    uploadDate: string; 
   }): Promise<any> {
     try {
       return await this.databases.updateDocument(
@@ -73,7 +73,9 @@ export class BlogService {
           title,
           content,
           category,
-          featuredImage,
+          uploadDate,
+          blogImage,
+
         }
       );
     } catch (error) {

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type UserData = {
+  $id: string;
   email: string;
   name: string;
 };
@@ -12,7 +13,7 @@ type AuthState = {
 
 const initialState: AuthState = {
   isAuthenticated: false,
-  userData: null,
+  userData: null
 };
 
 const authSlice = createSlice({

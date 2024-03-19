@@ -7,26 +7,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import authService from "@/appwrite/authService";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { login } from "@/redux/features/authSlice";
 import { AppDispatch } from "@/redux/store";
 import { SubmitHandler, useForm } from "react-hook-form";
+import FormInput from "@/components/utility/FormInput";
 
-type formInputs = {
+interface FormInputs {
   email: string;
   password: string;
-};
+}
 
 export default function LoginPage() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit } = useForm<formInputs>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const loginUser: SubmitHandler<formInputs> = async (data) => {
+  const { register, handleSubmit } = useForm<FormInputs>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+
+  const loginUser: SubmitHandler<FormInputs> = async (data) => {
     setError("");
     try {
       setLoading(true);
@@ -34,10 +35,10 @@ export default function LoginPage() {
       if (userSession) {
         const userData = await authService.getCurrentUser();
         if (userData) {
-          const { name, email } = userData;
-          dispatch(login({ name, email }));
+          const { $id, name, email } = userData;
+          dispatch(login({ $id, name, email }));
         }
-        router.push("/");
+        router.replace("/");
       }
     } catch (error: any) {
       setError(error.message);
@@ -54,7 +55,7 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <div className="grid w-full items-center gap-4">
-            <Input
+            <FormInput
               type="email"
               placeholder="Email"
               {...register("email", {
@@ -67,7 +68,7 @@ export default function LoginPage() {
                 },
               })}
             />
-            <Input
+            <FormInput
               type="password"
               placeholder="Password"
               {...register("password", {

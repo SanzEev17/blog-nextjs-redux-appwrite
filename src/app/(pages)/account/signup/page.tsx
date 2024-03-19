@@ -7,12 +7,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import authService from "@/appwrite/authService";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import FormInput from "@/components/utility/FormInput";
 
-type formInputs = {
+type FormInputs = {
   name: string;
   email: string;
   password: string;
@@ -21,16 +21,17 @@ type formInputs = {
 
 export default function SignupPage() {
   const router = useRouter();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { register, watch, handleSubmit } = useForm<formInputs>();
-  const createUser: SubmitHandler<formInputs> = async (data) => {
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const { register, watch, handleSubmit } = useForm<FormInputs>();
+
+  const createUser: SubmitHandler<FormInputs> = async (data) => {
     setError("");
     try {
       setLoading(true);
       const newUser = await authService.createUser(data);
       if (newUser) {
-        router.push("/login");
+        router.replace("/login");
       }
     } catch (error: any) {
       setError(error.message);
@@ -38,6 +39,7 @@ export default function SignupPage() {
       setLoading(false);
     }
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(createUser)}>
@@ -46,14 +48,14 @@ export default function SignupPage() {
         </CardHeader>
         <CardContent>
           <div className="grid w-full items-center gap-4">
-            <Input
+            <FormInput
               type="text"
               placeholder="Full Name"
               {...register("name", {
                 required: true,
               })}
             />
-            <Input
+            <FormInput
               type="email"
               placeholder="Email"
               {...register("email", {
@@ -66,14 +68,14 @@ export default function SignupPage() {
                 },
               })}
             />
-            <Input
+            <FormInput
               type="password"
               placeholder="Password"
               {...register("password", {
                 required: true,
               })}
             />
-            <Input
+            <FormInput
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword", {
