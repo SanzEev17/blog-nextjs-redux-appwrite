@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-const categories = ["food", "travel", "fashion", "coding", "politics"];
+const categories = ["food", "travel", "fashion", "coding", "politics", "sports"];
 
 export default function PopularCategories() {
   return (

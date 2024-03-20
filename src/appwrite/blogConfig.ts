@@ -23,6 +23,7 @@ export class BlogService {
     content,
     uploadDate,
     userId,
+    author
   }: {
     title: string;
     blogImage: string;
@@ -30,6 +31,7 @@ export class BlogService {
     content: string;
     uploadDate: string;
     userId: string;
+    author: string;
   }): Promise<any> {
     try {
       return await this.databases.createDocument(
@@ -43,6 +45,7 @@ export class BlogService {
           blogImage,
           userId,
           uploadDate,
+          author
         }
       );
     } catch (error) {
@@ -56,13 +59,11 @@ export class BlogService {
     blogImage,
     category,
     content,
-    uploadDate,
   }: {
     title: string;
     blogImage: string;
     category: string;
     content: string;
-    uploadDate: string; 
   }): Promise<any> {
     try {
       return await this.databases.updateDocument(
@@ -74,7 +75,6 @@ export class BlogService {
           content,
           category,
           blogImage,
-          uploadDate,
         }
       );
     } catch (error) {

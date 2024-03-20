@@ -1,30 +1,46 @@
 "use client";
 import blogService from "@/appwrite/blogConfig";
+import { Button } from "@/components/ui/button";
+import DialogButton from "@/components/utility/DialogButton";
+import { useAppSelector } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface Blog {
+  $id: string;
   title: string;
   blogImage: string;
   category: string;
   content: string;
   uploadDate: string;
+  author: string;
+  userId: string;
 }
 export default function BlogPage({ params }: { params: { blogId: string } }) {
+  const router = useRouter();
+  const userId = useAppSelector((state) => state.authReducer.userData);
   const [blog, setBlog] = useState<Blog>({
+    $id: "",
     title: "",
     blogImage: "",
     category: "",
     content: "",
     uploadDate: "",
+    author: "",
+    userId: "",
   });
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
+  async function deleteBlog() {
+    await blogService.deletePost(blog.$id);
+    await blogService.deleteImage(blog.blogImage);
+    router.replace("/");
+  }
   useEffect(() => {
     let isMounted = true;
-
     async function getPost() {
       try {
         setLoading(true);
@@ -45,7 +61,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
     return () => {
       isMounted = false;
     };
-  }, [params.blogId]);
+  }, [params.blogId, router, blog.$id, blog.blogImage]);
   return (
     <section className="py-20">
       {loading ? (
@@ -63,12 +79,12 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                 </h1>
                 <Link
                   href={`/blog/category/${blog.category}`}
-                  className="capitalize text-gray-500 hover:text-blue-500"
+                  className="capitalize hover:text-blue-500"
                 >
                   {blog.category}
                 </Link>
-                <div className="text-gray-800">Author:</div>
-                <div className="text-gray-500">Uploaded: {blog.uploadDate}</div>
+                <div className="text-gray-800">Author: {blog.author}</div>
+                <div className="text-gray-600">Uploaded: {blog.uploadDate}</div>
               </div>
               {/* Blog Image */}
               <div className="w-full max-w-36 md:max-w-80 min-h-32 md:min-h-60 rounded-md overflow-hidden relative">
@@ -85,6 +101,18 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
             <div className="px-8 py-6">
               <p className="text-gray-700">{blog.content}</p>
             </div>
+            {/* Edit and Delete Buttons */}
+            {userId && userId.$id === blog.userId && (
+              <div className="px-8 py-4 flex gap-3">
+                <Button>Edit</Button>
+                <DialogButton
+                  buttonVariant="destructive"
+                  onClick={() => deleteBlog()}
+                >
+                  Delete
+                </DialogButton>
+              </div>
+            )}
           </div>
         </section>
       )}

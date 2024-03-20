@@ -38,10 +38,10 @@ export default function BlogCard({
         >
           {category}
         </Link>
-        <h1 className="title-text">{title}</h1>
+        <h1 className="text-2xl font-bold">{title}</h1>
         <div className="font-bold">
-          {author}
-          <span className="text-gray-600"> {uploadDate}</span>
+          {author} 
+          <span className="text-gray-600"> - {uploadDate}</span>
         </div>
         <Link href={`/blog/${$id}`} className="hover:text-blue-600">
           Read more

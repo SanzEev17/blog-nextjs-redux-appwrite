@@ -84,6 +84,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
               ...data,
               uploadDate,
               userId: userData.$id,
+              author: userData.name,
             });
 
             blogPostDb && router.push(`/blog/${blogPostDb.$id}`);
