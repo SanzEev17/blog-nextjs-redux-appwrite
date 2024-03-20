@@ -8,11 +8,11 @@ import FeaturedPosts from './FeaturedPosts'
  * @param category - Optional category of posts to display.
  * @returns JSX.Element
  */
-export default function BlogContainer({ category }: { category?: string }): JSX.Element {
+export default function BlogContainer({category}:{category?: string}): JSX.Element {
   return (
     <section className="py-8">
       <div className="flex flex-col md:flex-row gap-8">
-        <RecentPosts />
+        <RecentPosts category={category} />
         <div className="md:w-[40%] flex flex-col items-start gap-8">
           <MostPopularPosts />
           {!category && <FeaturedPosts />}

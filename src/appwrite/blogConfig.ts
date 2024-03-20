@@ -41,8 +41,8 @@ export class BlogService {
           content,
           category,
           blogImage,
-          uploadDate,
           userId,
+          uploadDate,
         }
       );
     } catch (error) {
@@ -73,9 +73,8 @@ export class BlogService {
           title,
           content,
           category,
-          uploadDate,
           blogImage,
-
+          uploadDate,
         }
       );
     } catch (error) {
@@ -120,16 +119,17 @@ export class BlogService {
       throw new Error("Failed to list all blogs");
     }
   }
+  //! For some reason query doesn't work in NextJs 14
   async getCategory(category: string): Promise<any> {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        [Query.equal("category", category)]
+        [Query.contains('category', category)],
       );
     } catch (error) {
       console.log(error);
-      throw new Error("Failed to get category blogs");
+      throw new Error(`Failed to get ${category} blogs`);
     }
   }
   async uploadImage(image: any): Promise<any> {

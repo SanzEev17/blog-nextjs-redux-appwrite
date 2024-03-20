@@ -1,23 +1,56 @@
-import React from "react";
-import { recentPosts } from "@/constants/data";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import BlogCard from "./utility/BlogCard";
 import { Button } from "./ui/button";
+import blogService from "@/appwrite/blogConfig";
 
-export default function RecentPosts() {
+interface Blog {
+  $id: string;
+  $createdAt: string;
+  title: string;
+  category: string;
+  author: string;
+  blogImage: string;
+}
+export default function RecentPosts({category}:{category?:string}) {
+  const [blogs, setBlogs] = useState([]);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    async function getAllBlogs() {
+      try {
+        setLoading(false);
+        const posts = category
+          ? await blogService.getCategory(category)
+          : await blogService.getAllPosts();
+        posts && setBlogs(posts.documents);
+      } catch (error: any) {
+        console.log(error)
+        setError(error.message);
+      }
+    }
+    getAllBlogs();
+  }, [category]);
+  if (loading) {
+    return <div>Loading latest posts...</div>;
+  }
   return (
     <div className="w-full">
       <h1 className="title-text">Recent Posts</h1>
-      <div className="py-6 w-full flex flex-col gap-6">
-        {recentPosts.map((item, index) => (
+      <div className="py-6 min-w-full w-full flex flex-col gap-6">
+        {blogs.map((item: Blog, index) => (
           <BlogCard
             key={index}
+            $id={item.$id}
             title={item.title}
             category={item.category}
             author={item.author}
-            date={item.date}
+            uploadDate={item.$createdAt.slice(0, 10)}
+            blogImage={item.blogImage}
           />
         ))}
+        <div>{error}</div>
       </div>
       <div className="flex justify-between">
         <Button variant="outline" asChild>

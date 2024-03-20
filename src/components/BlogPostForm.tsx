@@ -70,7 +70,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
           router.push(`/blog/${blogPostDb.$id}`);
         }
       } else {
-        const uploadDate = new Date().toISOString();
+        const uploadDate = new Date().toJSON().slice(0, 10)
         const imageFile = data.blogImage[0]
           ? await blogService.uploadImage(data.blogImage[0])
           : null;
@@ -79,6 +79,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
           data.blogImage = imageFile.$id;
 
           if (userData) {
+            data.category = data.category.toLowerCase()
             const blogPostDb = await blogService.createPost({
               ...data,
               uploadDate,
