@@ -8,9 +8,9 @@ export default function NavItems() {
     (state) => state.authReducer.isAuthenticated
   );
   const navItems = [
+    { title: "Home", slug: "/" },
     { title: "My Blogs", slug: "/" },
     { title: "Create", slug: "blog/create" },
-    { title: "My Profile", slug: "profile" },
   ];
 
   return (

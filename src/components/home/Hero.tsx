@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="flex flex-col-reverse md:flex-row gap-8">
         <div className="w-full flex flex-col justify-center items-start gap-5">
           <h1 className="title-text">Some title goes here brrr........</h1>
-          <p className="text-gray-600 text-justify">
+          <p className="text-muted-foreground text-justify">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam,
             nisi. Natus, quaerat magnam, quo odit quasi consequatur ad
             repudiandae totam, a voluptate cupiditate ipsam atque rem ducimus

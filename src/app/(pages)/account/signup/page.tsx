@@ -31,7 +31,7 @@ export default function SignupPage() {
       setLoading(true);
       const newUser = await authService.createUser(data);
       if (newUser) {
-        router.replace("/login");
+        router.replace("/account/login");
       }
     } catch (error: any) {
       setError(error.message);

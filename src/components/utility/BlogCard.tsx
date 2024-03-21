@@ -34,16 +34,19 @@ export default function BlogCard({
       <div className="flex flex-col justify-center">
         <Link
           href={`/blog/category/${category.toLowerCase()}`}
-          className="text-xs lg:text-md uppercase text-blue-700"
+          className="uppercase border bg-accent text-xs md:text-md font-bold px-2 p-0.5 rounded-full w-fit hover:bg-primary-foreground hover:text-blue-500"
         >
           {category}
         </Link>
         <h1 className="text-2xl font-bold">{title}</h1>
         <div className="font-bold">
-          {author} 
-          <span className="text-gray-600"> - {uploadDate}</span>
+          {author}
+          <span className="text-muted-foreground"> - {uploadDate}</span>
         </div>
-        <Link href={`/blog/${$id}`} className="hover:text-blue-600">
+        <Link
+          href={`/blog/${$id}`}
+          className="text-muted-foreground hover:text-blue-600"
+        >
           Read more
         </Link>
       </div>

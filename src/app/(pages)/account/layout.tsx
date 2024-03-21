@@ -11,7 +11,7 @@ export default function RootLayout({
 }>) {
     return (
         <section className="h-screen flex justify-center items-center">
-            <Card className="w-96 bg-gray-50">
+            <Card className="w-96 bg-primary-foreground">
                 {children}
             </Card>
         </section>
