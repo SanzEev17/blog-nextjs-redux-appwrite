@@ -71,7 +71,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
       ) : (
         <section className="flex items-center justify-center">
           <div className="max-w-4xl bg-gray-100 rounded-lg overflow-hidden shadow-md">
-            <div className="flex flex-col md:flex-row items-center justify-between px-8 py-6 border-b border-gray-200">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-3 px-8 py-6 border-b border-gray-200">
               {/* Blog Title */}
               <div className="flex flex-col gap-2">
                 <h1 className="title-text font-bold text-gray-800">
@@ -79,7 +79,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                 </h1>
                 <Link
                   href={`/blog/category/${blog.category}`}
-                  className="capitalize hover:text-blue-500"
+                  className="px-2 py-0.5 text-sm capitalize w-fit rounded-full bg-blue-500 text-gray-100 hover:bg-blue-400"
                 >
                   {blog.category}
                 </Link>
@@ -104,7 +104,9 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
             {/* Edit and Delete Buttons */}
             {userId && userId.$id === blog.userId && (
               <div className="px-8 py-4 flex gap-3">
-                <Button>Edit</Button>
+                <Button asChild>
+                  <Link href={`update/${blog.$id}`}>Edit</Link>
+                </Button>
                 <DialogButton
                   buttonVariant="destructive"
                   onClick={() => deleteBlog()}

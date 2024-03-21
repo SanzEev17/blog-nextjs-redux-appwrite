@@ -17,7 +17,6 @@ import { useRouter } from "next/navigation";
 
 interface CreateBlog {
   title: string;
-  slug: string;
   blogImage: string;
   category: string;
   content: string;
@@ -97,24 +96,24 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
       setLoading(false);
     }
   };
-  const generateSlug = useCallback((value: string) => {
-    return (
-      value &&
-      value
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z0-9]+/g, "-")
-    );
-  }, []);
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "title" && typeof value.title === "string") {
-        setValue("slug", generateSlug(value.title), { shouldValidate: true });
-      }
-    });
+  // const generateSlug = useCallback((value: string) => {
+  //   return (
+  //     value &&
+  //     value
+  //       .trim()
+  //       .toLowerCase()
+  //       .replace(/[^a-zA-Z0-9]+/g, "-")
+  //   );
+  // }, []);
+  // useEffect(() => {
+  //   const subscription = watch((value, { name }) => {
+  //     if (name === "title" && typeof value.title === "string") {
+  //       setValue("slug", generateSlug(value.title), { shouldValidate: true });
+  //     }
+  //   });
 
-    return () => subscription.unsubscribe();
-  }, [watch, generateSlug, setValue]);
+  //   return () => subscription.unsubscribe();
+  // }, [watch, generateSlug, setValue]);
 
   return (
     <form
