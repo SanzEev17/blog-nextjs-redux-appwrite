@@ -9,6 +9,7 @@ interface Blog {
   $id: string;
   $createdAt: string;
   title: string;
+  content: string;
   category: string;
   author: string;
   blogImage: string;
@@ -26,7 +27,6 @@ export default function RecentPosts({category}:{category?:string}) {
           : await blogService.getAllPosts();
         posts && setBlogs(posts.documents);
       } catch (error: any) {
-        console.log(error)
         setError(error.message);
       }
     }
@@ -36,14 +36,15 @@ export default function RecentPosts({category}:{category?:string}) {
     return <div>Loading latest posts...</div>;
   }
   return (
-    <div className="w-full">
+    <div className="w-full py-8">
       <h1 className="title-text">Recent Posts</h1>
-      <div className="py-6 min-w-full w-full flex flex-col gap-6">
+      <div className="py-6 grid grid-cols-3 gap-8">
         {blogs.map((item: Blog, index) => (
           <BlogCard
             key={index}
             $id={item.$id}
             title={item.title}
+            content={item.content}
             category={item.category}
             author={item.author}
             uploadDate={item.$createdAt.slice(0, 10)}

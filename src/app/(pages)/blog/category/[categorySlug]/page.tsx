@@ -1,4 +1,4 @@
-import BlogContainer from "@/components/BlogContainer";
+import RecentPosts from "@/components/RecentPosts";
 import React from "react";
 
 
@@ -13,7 +13,7 @@ export default function CategoryPage({
         <h1 className="title-text py-4 bg-accent text-center rounded-lg capitalize">
           {params.categorySlug} Blog
         </h1>
-        <BlogContainer category={params.categorySlug} />
+        <RecentPosts category={params.categorySlug} />
       </div>
     </section>
   );

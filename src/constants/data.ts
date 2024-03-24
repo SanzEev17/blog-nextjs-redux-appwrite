@@ -9,7 +9,6 @@ const popularPosts = [
     { title: "Something about the world", category: "Travel", author:"Someone", date: "2018-05-18" },
     { title: "Something about the world", category: "Travel", author:"Someone", date: "2018-05-18" },
     { title: "Something about the world", category: "Travel", author:"Someone", date: "2018-05-18" },
-    { title: "Something about the world", category: "Travel", author:"Someone", date: "2018-05-18" },
 ]
 
 const featuredPosts = [

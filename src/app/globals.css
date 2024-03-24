@@ -82,4 +82,7 @@
   .darker-shade{
     @apply absolute w-full h-full bg-black opacity-20;
   }
+  .dark-gradient{
+    @apply absolute w-full h-full bg-gradient-to-tr from-black to-transparent;
+  }
 }
