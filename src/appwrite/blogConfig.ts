@@ -24,7 +24,7 @@ export class BlogService {
     uploadDate,
     userId,
     author,
-    blogViews
+    blogViews,
   }: {
     title: string;
     blogImage: string;
@@ -33,7 +33,7 @@ export class BlogService {
     uploadDate: string;
     userId: string;
     author: string;
-    blogViews:number;
+    blogViews: number;
   }): Promise<any> {
     try {
       return await this.databases.createDocument(
@@ -48,7 +48,7 @@ export class BlogService {
           userId,
           uploadDate,
           author,
-          blogViews
+          blogViews,
         }
       );
     } catch (error) {
@@ -89,7 +89,6 @@ export class BlogService {
     }
   }
   async updateViews(blogId: string, blogViews: number): Promise<any> {
-    console.log(blogViews)
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -139,17 +138,28 @@ export class BlogService {
       throw new Error("Failed to list all blogs");
     }
   }
-  //! For some reason query doesn't work in NextJs 14
   async getCategory(category: string): Promise<any> {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        [Query.contains("category", category)]
+        [Query.equal("category", category)]
       );
     } catch (error) {
       console.log(error);
       throw new Error(`Failed to get ${category} blogs`);
+    }
+  }
+  async getPopularPosts(): Promise<any> {
+    try {
+      return await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        [Query.orderDesc("blogViews"), Query.limit(3)]
+      );
+    } catch (error) {
+      console.log(error);
+      throw new Error(`Failed to get most popular blogs`);
     }
   }
   async uploadImage(image: any): Promise<any> {

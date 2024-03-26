@@ -58,6 +58,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
   }, [params.blogId, user?.$id, router]);
   //* If author is not the viewer add views by 1
   blog &&
+    user &&
     user?.$id !== blog.userId &&
     blogService.updateViews(params.blogId, blog.blogViews + 1);
   return (

@@ -44,7 +44,7 @@ export default function BlogCard({
               {category}
             </Link>
             <Image
-              src={blogService.getImagePreview(blogImage).href}
+              src={blogImage}
               alt={title}
               fill
               quality={100}

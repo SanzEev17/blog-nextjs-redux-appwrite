@@ -54,7 +54,7 @@ export default function RecentPosts({ category }: { category?: string }) {
             category={item.category}
             author={item.author}
             uploadDate={item.uploadDate}
-            blogImage={item.blogImage}
+            blogImage={blogService.getImagePreview(item.blogImage).href}
             blogViews={item.blogViews}
           />
         ))}
