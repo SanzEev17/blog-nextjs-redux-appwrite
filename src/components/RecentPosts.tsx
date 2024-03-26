@@ -7,14 +7,15 @@ import blogService from "@/appwrite/blogConfig";
 
 interface Blog {
   $id: string;
-  $createdAt: string;
   title: string;
   content: string;
   category: string;
   author: string;
+  uploadDate: string;
   blogImage: string;
+  blogViews:number;
 }
-export default function RecentPosts({category}:{category?:string}) {
+export default function RecentPosts({ category }: { category?: string }) {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,7 +38,12 @@ export default function RecentPosts({category}:{category?:string}) {
   }
   return (
     <div className="w-full py-8">
-      <h1 className="title-text">Recent Posts</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="title-text">Recent Posts</h1>
+        <Button variant="outline" asChild>
+          <Link href="">View all</Link>
+        </Button>
+      </div>
       <div className="py-6 grid grid-cols-3 gap-8">
         {blogs.map((item: Blog, index) => (
           <BlogCard
@@ -47,19 +53,12 @@ export default function RecentPosts({category}:{category?:string}) {
             content={item.content}
             category={item.category}
             author={item.author}
-            uploadDate={item.$createdAt.slice(0, 10)}
+            uploadDate={item.uploadDate}
             blogImage={item.blogImage}
+            blogViews={item.blogViews}
           />
         ))}
         <div>{error}</div>
-      </div>
-      <div className="flex justify-between">
-        <Button variant="outline" asChild>
-          <Link href="">Previous</Link>
-        </Button>
-        <Button variant="outline" asChild>
-          <Link href="">Next</Link>
-        </Button>
       </div>
     </div>
   );

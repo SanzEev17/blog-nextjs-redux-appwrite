@@ -24,6 +24,7 @@ interface CreateBlog {
 interface BlogData extends CreateBlog {
   $id: string;
   uploadDate: string;
+  blogViews:number;
 }
 
 export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
@@ -84,6 +85,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
               uploadDate,
               userId: userData.$id,
               author: userData.name,
+              blogViews:0
             });
 
             blogPostDb && router.push(`/blog/${blogPostDb.$id}`);

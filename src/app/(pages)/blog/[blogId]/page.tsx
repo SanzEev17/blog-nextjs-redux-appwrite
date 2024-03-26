@@ -17,27 +17,21 @@ interface Blog {
   uploadDate: string;
   author: string;
   userId: string;
+  blogViews: number;
 }
 export default function BlogPage({ params }: { params: { blogId: string } }) {
   const router = useRouter();
-  const userId = useAppSelector((state) => state.authReducer.userData);
-  const [blog, setBlog] = useState<Blog>({
-    $id: "",
-    title: "",
-    blogImage: "",
-    category: "",
-    content: "",
-    uploadDate: "",
-    author: "",
-    userId: "",
-  });
+  const user = useAppSelector((state) => state.authReducer.userData);
+  const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   async function deleteBlog() {
-    await blogService.deletePost(blog.$id);
-    await blogService.deleteImage(blog.blogImage);
-    router.replace("/");
+    if (blog) {
+      await blogService.deletePost(blog.$id);
+      await blogService.deleteImage(blog.blogImage);
+      router.replace("/");
+    }
   }
   useEffect(() => {
     let isMounted = true;
@@ -61,10 +55,14 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
     return () => {
       isMounted = false;
     };
-  }, [params.blogId, router, blog.$id, blog.blogImage]);
+  }, [params.blogId, user?.$id, router]);
+  //* If author is not the viewer add views by 1
+  blog &&
+    user?.$id !== blog.userId &&
+    blogService.updateViews(params.blogId, blog.blogViews + 1);
   return (
     <section className="py-20">
-      {loading ? (
+      {loading || !blog ? (
         <div>Loading...</div>
       ) : error ? (
         <div>Error: {error}</div>
@@ -74,9 +72,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
             <div className="flex flex-col md:flex-row items-center justify-between gap-3 px-8 py-6 border-b border-gray-200">
               {/* Blog Title */}
               <div className="flex flex-col gap-2">
-                <h1 className="title-text font-bold">
-                  {blog.title}
-                </h1>
+                <h1 className="title-text font-bold">{blog.title}</h1>
                 <Link
                   href={`/blog/category/${blog.category}`}
                   className="px-2 py-0.5 text-sm capitalize w-fit rounded-full bg-blue-500 text-gray-100 hover:bg-blue-400"
@@ -84,7 +80,9 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                   {blog.category}
                 </Link>
                 <div className="text-primary">Author: {blog.author}</div>
-                <div className="text-muted-foreground">Uploaded: {blog.uploadDate}</div>
+                <div className="text-muted-foreground">
+                  Uploaded: {blog.uploadDate}
+                </div>
               </div>
               {/* Blog Image */}
               <div className="w-full max-w-36 md:max-w-80 min-h-32 md:min-h-60 rounded-md overflow-hidden relative">
@@ -102,7 +100,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
               <p className="text-muted-foreground">{blog.content}</p>
             </div>
             {/* Edit and Delete Buttons */}
-            {userId && userId.$id === blog.userId && (
+            {user && user.$id === blog.userId && (
               <div className="px-8 py-4 flex gap-3">
                 <Button asChild>
                   <Link href={`update/${blog.$id}`}>Edit</Link>

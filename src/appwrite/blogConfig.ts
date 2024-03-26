@@ -23,7 +23,8 @@ export class BlogService {
     content,
     uploadDate,
     userId,
-    author
+    author,
+    blogViews
   }: {
     title: string;
     blogImage: string;
@@ -32,6 +33,7 @@ export class BlogService {
     uploadDate: string;
     userId: string;
     author: string;
+    blogViews:number;
   }): Promise<any> {
     try {
       return await this.databases.createDocument(
@@ -45,7 +47,8 @@ export class BlogService {
           blogImage,
           userId,
           uploadDate,
-          author
+          author,
+          blogViews
         }
       );
     } catch (error) {
@@ -54,17 +57,20 @@ export class BlogService {
     }
   }
 
-  async updatePost(blogId:string,{
-    title,
-    blogImage,
-    category,
-    content,
-  }: {
-    title: string;
-    blogImage: string;
-    category: string;
-    content: string;
-  }): Promise<any> {
+  async updatePost(
+    blogId: string,
+    {
+      title,
+      blogImage,
+      category,
+      content,
+    }: {
+      title: string;
+      blogImage: string;
+      category: string;
+      content: string;
+    }
+  ): Promise<any> {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -76,6 +82,20 @@ export class BlogService {
           category,
           blogImage,
         }
+      );
+    } catch (error) {
+      console.log(error);
+      throw new Error("Failed to update blog");
+    }
+  }
+  async updateViews(blogId: string, blogViews: number): Promise<any> {
+    console.log(blogViews)
+    try {
+      return await this.databases.updateDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        blogId,
+        { blogViews }
       );
     } catch (error) {
       console.log(error);
@@ -125,7 +145,7 @@ export class BlogService {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        [Query.contains('category', category)],
+        [Query.contains("category", category)]
       );
     } catch (error) {
       console.log(error);

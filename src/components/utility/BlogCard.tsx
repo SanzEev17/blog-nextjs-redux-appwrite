@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import blogService from "@/appwrite/blogConfig";
 import {
   Card,
@@ -19,6 +19,7 @@ interface CardType {
   author: string;
   uploadDate: string;
   blogImage: string;
+  blogViews: number;
 }
 
 export default function BlogCard({
@@ -29,6 +30,7 @@ export default function BlogCard({
   author,
   uploadDate,
   blogImage,
+  blogViews,
 }: CardType) {
   return (
     <Card>
@@ -49,10 +51,13 @@ export default function BlogCard({
             />
             <div className="darker-shade"></div>
           </div>
-          <CardTitle className="pt-2 text-lg line-clamp-2 hover:text-gray-300">{title}</CardTitle>
+          <CardTitle className="pt-2 text-lg line-clamp-2 hover:text-gray-300">
+            {title}
+          </CardTitle>
         </Link>
-        <CardDescription className="font-bold">
-          Uploaded on: {uploadDate}
+        <CardDescription className="flex justify-between items-center">
+          <span className="font-bold">Uploaded on: {uploadDate}</span>
+          <span>{blogViews} Views</span>
         </CardDescription>
       </CardHeader>
       <CardContent>
