@@ -50,9 +50,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
         setLoading(false);
       }
     }
-
     getPost();
-
     return () => {
       isMounted = false;
     };
@@ -62,64 +60,61 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
     user &&
     user?.$id !== blog.userId &&
     blogService.updateViews(params.blogId, blog.blogViews + 1);
-  return (
-    <section className="py-20">
-      {loading || !blog ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div>Error: {error}</div>
-      ) : (
-        <section className="flex items-center justify-center">
-          <div className="max-w-4xl bg-primary-foreground rounded-lg overflow-hidden shadow-md">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-3 px-8 py-6 border-b border-gray-200">
-              {/* Blog Title */}
-              <div className="flex flex-col gap-2">
-                <h1 className="title-text font-bold">{blog.title}</h1>
-                <Link
-                  href={`/blog/category/${blog.category}`}
-                  className="px-2 py-0.5 text-sm capitalize w-fit rounded-full bg-blue-500 text-gray-100 hover:bg-blue-400"
-                >
-                  {blog.category}
-                </Link>
-                <div className="text-primary">Author: {blog.author}</div>
-                <div className="text-muted-foreground">
-                  Uploaded: {blog.uploadDate}
-                </div>
-              </div>
-              {/* Blog Image */}
-              <div className="w-full max-w-[40%] rounded-md overflow-hidden relative">
-                <AspectRatio ratio={5 / 3}>
-                  <Image
-                    src={blogService.getImagePreview(blog.blogImage).href}
-                    alt={blog.title}
-                    fill
-                    quality={100}
-                  />
-                  <div className="darker-shade"></div>
-                </AspectRatio>
-              </div>
+
+  return loading || !blog ? (
+    <div>Loading...</div>
+  ) : error ? (
+    <div>Error: {error}</div>
+  ) : (
+    <section className="py-20 min-h-screen flex items-center justify-center">
+      <div className="max-w-4xl bg-primary-foreground rounded-lg overflow-hidden shadow-md">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 px-8 py-6 border-b border-gray-200">
+          {/* Blog Title */}
+          <div className="flex flex-col gap-2">
+            <h1 className="title-text font-bold">{blog.title}</h1>
+            <Link
+              href={`/blog/category/${blog.category}`}
+              className="px-2 py-0.5 text-sm capitalize w-fit rounded-full bg-blue-500 text-gray-100 hover:bg-blue-400"
+            >
+              {blog.category}
+            </Link>
+            <div className="text-primary">Author: {blog.author}</div>
+            <div className="text-muted-foreground">
+              Uploaded: {blog.uploadDate}
             </div>
-            {/* Blog Content */}
-            <div className="px-8 py-6">
-              <p className="text-muted-foreground">{blog.content}</p>
-            </div>
-            {/* Edit and Delete Buttons */}
-            {user && user.$id === blog.userId && (
-              <div className="px-8 py-4 flex gap-3">
-                <Button asChild>
-                  <Link href={`update/${blog.$id}`}>Edit</Link>
-                </Button>
-                <DialogButton
-                  buttonVariant="destructive"
-                  onClick={() => deleteBlog()}
-                >
-                  Delete
-                </DialogButton>
-              </div>
-            )}
           </div>
-        </section>
-      )}
+          {/* Blog Image */}
+          <div className="w-full max-w-[40%] rounded-md overflow-hidden relative">
+            <AspectRatio ratio={5 / 3}>
+              <Image
+                src={blogService.getImagePreview(blog.blogImage).href}
+                alt={blog.title}
+                fill
+                quality={100}
+              />
+              <div className="darker-shade"></div>
+            </AspectRatio>
+          </div>
+        </div>
+        {/* Blog Content */}
+        <div className="px-8 py-6">
+          <p className="text-muted-foreground">{blog.content}</p>
+        </div>
+        {/* Edit and Delete Buttons */}
+        {user && user.$id === blog.userId && (
+          <div className="px-8 py-4 flex gap-3">
+            <Button asChild>
+              <Link href={`update/${blog.$id}`}>Edit</Link>
+            </Button>
+            <DialogButton
+              buttonVariant="destructive"
+              onClick={() => deleteBlog()}
+            >
+              Delete
+            </DialogButton>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex justify-between items-center">
           <h1 className="title-text">Recent Posts</h1>
           <Button variant="outline" asChild>
-            <Link href="">View all</Link>
+            <Link href="/blog/recent">View all</Link>
           </Button>
         </div>
         <RecentPosts limit={6} offset={0} />

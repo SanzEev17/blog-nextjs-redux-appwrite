@@ -52,7 +52,7 @@ export default function MostPopularPosts() {
             <BlogList
               key={index}
               title={post.title}
-              slug={blogs[0].$id}
+              slug={post.$id}
               category={post.category}
               author={post.author}
               uploadDate={post.uploadDate}
