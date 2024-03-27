@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import image from "../../../public/images/hero.jpg";
 import { AspectRatio } from "../ui/aspect-ratio";
 
 type BlogListProps = {

@@ -2,6 +2,8 @@ import MostPopularPosts from "@/components/MostPopularPosts";
 import RecentPosts from "@/components/RecentPosts";
 import Hero from "@/components/home/Hero";
 import PopularCategories from "@/components/home/PopularCategories";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,7 +11,15 @@ export default function Home() {
       <Hero />
       <PopularCategories />
       <MostPopularPosts />
-      <RecentPosts />
+      <div className="w-full py-8">
+        <div className="flex justify-between items-center">
+          <h1 className="title-text">Recent Posts</h1>
+          <Button variant="outline" asChild>
+            <Link href="">View all</Link>
+          </Button>
+        </div>
+        <RecentPosts limit={6} offset={0} />
+      </div>
     </>
   );
 }

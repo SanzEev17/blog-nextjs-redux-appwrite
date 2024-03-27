@@ -2,18 +2,14 @@ import RecentPosts from "@/components/RecentPosts";
 import React from "react";
 
 
-export default function CategoryPage({
-  params,
-}: {
-  params: { categorySlug: string };
-}) {
+export default function RecentBlogPage() {
   return (
     <section className="py-20">
       <div>
         <h1 className="title-text py-4 bg-accent text-center rounded-lg capitalize">
-          {params.categorySlug} Blog
+          Latest Blogs
         </h1>
-        <RecentPosts category={params.categorySlug} limit={9} offset={0} />
+        <RecentPosts />
       </div>
     </section>
   );

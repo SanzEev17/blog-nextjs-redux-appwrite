@@ -1,5 +1,6 @@
 "use client";
 import blogService from "@/appwrite/blogConfig";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import DialogButton from "@/components/utility/DialogButton";
 import { useAppSelector } from "@/redux/store";
@@ -86,14 +87,16 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                 </div>
               </div>
               {/* Blog Image */}
-              <div className="w-full max-w-36 md:max-w-80 min-h-32 md:min-h-60 rounded-md overflow-hidden relative">
-                <Image
-                  src={blogService.getImagePreview(blog.blogImage).href}
-                  alt={blog.title}
-                  fill
-                  quality={100}
-                />
-                <div className="darker-shade"></div>
+              <div className="w-full max-w-[40%] rounded-md overflow-hidden relative">
+                <AspectRatio ratio={5 / 3}>
+                  <Image
+                    src={blogService.getImagePreview(blog.blogImage).href}
+                    alt={blog.title}
+                    fill
+                    quality={100}
+                  />
+                  <div className="darker-shade"></div>
+                </AspectRatio>
               </div>
             </div>
             {/* Blog Content */}

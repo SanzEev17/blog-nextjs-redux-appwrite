@@ -127,11 +127,16 @@ export class BlogService {
       throw new Error("Failed to get blog");
     }
   }
-  async getAllPosts(): Promise<any> {
+  async getAllPosts(limit: number, offset: number): Promise<{}> {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
-        conf.appwriteCollectionId
+        conf.appwriteCollectionId,
+        [
+          Query.orderDesc("$createdAt"),
+          Query.limit(limit),
+          Query.offset(offset)
+        ]
       );
     } catch (error) {
       console.log(error);
@@ -143,7 +148,7 @@ export class BlogService {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        [Query.equal("category", category)]
+        [Query.equal("category", category), Query.orderDesc("$createdAt")]
       );
     } catch (error) {
       console.log(error);

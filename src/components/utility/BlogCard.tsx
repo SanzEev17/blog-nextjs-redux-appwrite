@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { AspectRatio } from "../ui/aspect-ratio";
 
 interface CardType {
   $id: string;
@@ -36,20 +37,17 @@ export default function BlogCard({
     <Card>
       <CardHeader>
         <Link href={`/blog/${$id}`}>
-          <div className="w-full h-full max-w-36 md:max-w-80 min-h-32 md:min-h-48 rounded-md overflow-hidden relative">
+          <div className="w-full h-full max-w-36 md:max-w-80 rounded-md overflow-hidden relative">
             <Link
               href={`/blog/category/${category}`}
               className="px-2 py-0.5 absolute bottom-2 left-2 z-10 uppercase text-xs font-bold border bg-primary-foreground hover:bg-gray-800 rounded-full"
             >
               {category}
             </Link>
-            <Image
-              src={blogImage}
-              alt={title}
-              fill
-              quality={100}
-            />
-            <div className="darker-shade"></div>
+            <AspectRatio ratio={5 / 3}>
+              <Image src={blogImage} alt={title} fill quality={100} />
+              <div className="darker-shade"></div>
+            </AspectRatio>
           </div>
           <CardTitle className="pt-2 text-lg line-clamp-2 hover:text-gray-300">
             {title}

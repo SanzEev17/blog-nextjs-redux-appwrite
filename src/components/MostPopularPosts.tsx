@@ -28,7 +28,6 @@ export default function MostPopularPosts() {
     }
     getAllBlogs();
   }, []);
-  console.log(blogs)
   if (loading) {
     return <div>Loading popular blogs...</div>;
   }
