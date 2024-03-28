@@ -1,7 +1,7 @@
 import MostPopularPosts from "@/components/MostPopularPosts";
 import RecentPosts from "@/components/RecentPosts";
-import Hero from "@/components/home/Hero";
-import PopularCategories from "@/components/home/PopularCategories";
+import Hero from "@/components/Hero";
+import PopularCategories from "@/components/PopularCategories";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

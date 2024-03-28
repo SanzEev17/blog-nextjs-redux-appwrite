@@ -27,7 +27,7 @@ const BlogList: React.FC<BlogListProps> = ({
           src={blogImage}
           alt="Blog Post Image"
           layout="fill"
-          objectFit="cover"
+          sizes="(max-width: 768px) 100vw, (min-width: 768px) 40%"
           className="rounded-lg"
         />
         <div className="darker-shade"></div>

@@ -31,8 +31,6 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors },
   } = useForm<CreateBlog>({
     defaultValues: {

@@ -22,7 +22,7 @@ export default function BlogImageCard({
             src={blogImage}
             alt="Blog Post Image"
             layout="fill"
-            objectFit="cover"
+            sizes="(max-width: 768px) 100vw, (min-width: 768px) 50%"
             className="h-full w-full object-cover"
           />
           <div className="dark-gradient"></div>

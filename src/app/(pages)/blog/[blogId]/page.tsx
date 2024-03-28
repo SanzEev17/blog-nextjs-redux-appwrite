@@ -90,6 +90,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                 src={blogService.getImagePreview(blog.blogImage).href}
                 alt={blog.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (min-width: 768px) 40%"
                 quality={100}
               />
               <div className="darker-shade"></div>
