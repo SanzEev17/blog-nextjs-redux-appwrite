@@ -15,6 +15,7 @@ export default function DialogButton({
   children,
   buttonVariant = "default",
   onClick,
+  className,
 }: {
   children: React.ReactNode;
   buttonVariant:
@@ -27,21 +28,24 @@ export default function DialogButton({
     | null
     | undefined;
   onClick: () => any;
+  className?: string;
 }) {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant={buttonVariant}>{children}</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onClick}>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <div className={className}>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant={buttonVariant}>{children}</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={onClick}>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 }
