@@ -18,6 +18,7 @@ interface CardType {
   content: string;
   category: string;
   author: string;
+  authorId: string;
   uploadDate: string;
   blogImage: string;
   blogViews: number;
@@ -29,6 +30,7 @@ export default function BlogCard({
   content,
   category,
   author,
+  authorId,
   uploadDate,
   blogImage,
   blogViews,
@@ -69,7 +71,15 @@ export default function BlogCard({
         <p className="text-sm md:text-base line-clamp-3">{content}</p>
       </CardContent>
       <CardFooter>
-        <div className="text-sm md:text-base font-bold">Author: {author}</div>
+        <div className="text-sm md:text-base font-bold">
+          <span>Author:&nbsp;</span>
+          <Link
+            href={`blog/author/${authorId}`}
+            className="hover:text-blue-500"
+          >
+            {author}
+          </Link>
+        </div>
       </CardFooter>
     </Card>
   );

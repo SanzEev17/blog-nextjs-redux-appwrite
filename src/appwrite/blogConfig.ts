@@ -143,6 +143,18 @@ export class BlogService {
       throw new Error("Failed to list all blogs");
     }
   }
+  async getUserPosts(userId: string): Promise<any> {
+    try {
+      return await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        [Query.equal("userId", userId), Query.orderDesc("$createdAt")]
+      );
+    } catch (error) {
+      console.log(error);
+      throw new Error(`Failed to get blogs`);
+    }
+  }
   async getCategory(category: string): Promise<any> {
     try {
       return await this.databases.listDocuments(

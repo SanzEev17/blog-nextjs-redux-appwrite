@@ -7,9 +7,10 @@ export default function NavItems() {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated
   );
+  const authorId = useAppSelector((state) => state.authReducer.userData?.$id);
   const navItems = [
     { title: "Home", slug: "/" },
-    { title: "My Blogs", slug: "/" },
+    { title: "My Blogs", slug: `blog/author/${authorId}` },
     { title: "Create", slug: "blog/create" },
   ];
 

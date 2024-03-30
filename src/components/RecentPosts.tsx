@@ -9,19 +9,23 @@ interface Blog {
   content: string;
   category: string;
   author: string;
+  userId:string;
   uploadDate: string;
   blogImage: string;
   blogViews: number;
 }
 export default function RecentPosts({
   category,
+  authorId,
   limit,
-  offset
+  offset,
 }: {
   category?: string;
-  limit:number;
-  offset:number;
+  authorId?: string;
+  limit: number;
+  offset: number;
 }) {
+  
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -31,6 +35,8 @@ export default function RecentPosts({
         setLoading(false);
         const posts = category
           ? await blogService.getCategory(category)
+          : authorId
+          ? await blogService.getUserPosts(authorId)
           : await blogService.getAllPosts(limit, offset);
         posts && setBlogs(posts.documents);
       } catch (error: any) {
@@ -38,7 +44,7 @@ export default function RecentPosts({
       }
     }
     getAllBlogs();
-  }, [category, limit, offset]);
+  }, [category, authorId, limit, offset]);
   if (loading) {
     return <div>Loading latest posts...</div>;
   }
@@ -52,6 +58,7 @@ export default function RecentPosts({
           content={item.content}
           category={item.category}
           author={item.author}
+          authorId={item.userId}
           uploadDate={item.uploadDate}
           blogImage={blogService.getImagePreview(item.blogImage).href}
           blogViews={item.blogViews}
