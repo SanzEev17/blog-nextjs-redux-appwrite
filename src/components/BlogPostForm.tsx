@@ -120,7 +120,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
       onSubmit={handleSubmit(submitBlog)}
       className="h-screen flex justify-center items-center"
     >
-      <Card className="w-full md:max-w-xl">
+      <Card className="w-full md:max-w-3xl">
         <CardHeader>
           <CardTitle className="title-text">
             {blogData ? "Update the blog" : "Create a blog"}
@@ -136,7 +136,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
             placeholder="What's your story about?"
             {...register("title", { required: true })}
           />
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <FormInput
               label="Blog Image"
               type="file"
@@ -152,7 +152,7 @@ export default function BlogPostForm({blogData}:{blogData?: BlogData}) {
             label="Content"
             textarea
             placeholder="Share your story here..."
-            className="min-h-36 resize-none"
+            className="min-h-36 md:min-h-44 resize-none"
             {...register("content", { required: true })}
           />
         </CardContent>

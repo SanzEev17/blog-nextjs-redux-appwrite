@@ -43,7 +43,7 @@ export default function RecentPosts({
     return <div>Loading latest posts...</div>;
   }
   return (
-    <div className="py-6 grid grid-cols-3 gap-8">
+    <div className="py-6 grid md:grid-cols-3 gap-4 md:gap-8">
       {blogs.map((item, index) => (
         <BlogCard
           key={index}

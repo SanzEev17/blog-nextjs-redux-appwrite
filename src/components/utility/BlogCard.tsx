@@ -37,7 +37,7 @@ export default function BlogCard({
     <Card>
       <CardHeader>
         <Link href={`/blog/${$id}`}>
-          <div className="w-full h-full max-w-36 md:max-w-80 rounded-md overflow-hidden relative">
+          <div className="w-full h-full md:max-w-80 rounded-md overflow-hidden relative">
             <AspectRatio ratio={5 / 3}>
               <Image
                 src={blogImage}
@@ -60,16 +60,16 @@ export default function BlogCard({
             {title}
           </CardTitle>
         </Link>
-        <CardDescription className="flex justify-between items-center">
+        <CardDescription className="text-xs md:text-sm flex justify-between items-center">
           <span className="font-bold">Uploaded on: {uploadDate}</span>
           <span>{blogViews} Views</span>
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="line-clamp-3">{content}</p>
+        <p className="text-sm md:text-base line-clamp-3">{content}</p>
       </CardContent>
       <CardFooter>
-        <div className="font-bold">Author: {author}</div>
+        <div className="text-sm md:text-base font-bold">Author: {author}</div>
       </CardFooter>
     </Card>
   );

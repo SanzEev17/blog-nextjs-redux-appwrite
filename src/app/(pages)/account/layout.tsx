@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <section className="h-screen flex justify-center items-center">
+    <section className="h-svh md:h-screen flex justify-center items-center">
       <Card className="w-96 bg-primary-foreground">{children}</Card>
     </section>
   );

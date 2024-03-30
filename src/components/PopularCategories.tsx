@@ -7,7 +7,7 @@ export default function PopularCategories() {
   return (
     <section className="py-8">
       <h1 className="title-text">Popular Categories</h1>
-      <div className="py-8 flex flex-wrap items-center gap-7 md:gap-8">
+      <div className="py-8 flex flex-wrap items-center justify-between gap-y-7 md:gap-0">
         {categories.slice(0, 6).map((item, index) => (
           <Button
             key={index}

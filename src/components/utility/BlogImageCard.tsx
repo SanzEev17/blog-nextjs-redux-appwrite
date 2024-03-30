@@ -28,12 +28,12 @@ export default function BlogImageCard({
           <div className="dark-gradient"></div>
           <div className="p-6 absolute bottom-0">
             <Link
-              href={`/blo/category/${category}`}
-              className="text-sm uppercase font-bold text-muted-foreground hover:text-blue-500"
+              href={`/blog/category/${category}`}
+              className="text-xs md:text-sm uppercase font-bold text-muted-foreground hover:text-blue-500"
             >
               {category}
             </Link>
-            <h3 className="text-2xl text-primary font-bold">{title}</h3>
+            <h3 className="text-lg md:text-2xl text-primary font-bold">{title}</h3>
           </div>
         </AspectRatio>
       </Link>

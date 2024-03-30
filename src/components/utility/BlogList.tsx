@@ -20,8 +20,9 @@ const BlogList: React.FC<BlogListProps> = ({
   uploadDate,
   blogImage,
 }) => (
-  <div key={title} className="flex flex-row gap-4 rounded-lg shadow-md">
-    <div className="w-full md:max-w-[40%] md:min-w-[40%]">
+  <div key={title} className="flex flex-row gap-4">
+    {/* Blog Image */}
+    <div className="w-full max-w-[40%] min-w-[40%]">
       <AspectRatio ratio={4 / 3}>
         <Image
           src={blogImage}
@@ -33,21 +34,24 @@ const BlogList: React.FC<BlogListProps> = ({
         <div className="darker-shade"></div>
       </AspectRatio>
     </div>
-    <div className="flex flex-col justify-center gap-2 text-muted-foreground text-sm">
+    {/* Blog Items */}
+    <div className="flex flex-col justify-center gap-1 md:gap-2 text-muted-foreground text-sm">
+      {/* Blog Category */}
       <Link
-        href={`/blo/category/${category}`}
-        className="uppercase font-bold hover:text-blue-500"
+        href={`/blog/category/${category}`}
+        className="text-xs md:text-md uppercase font-bold hover:text-blue-500"
       >
         {category}
       </Link>
+      {/* Blog Title  */}
       <Link
         href={`/blog/${slug}`}
-        className="text-lg text-primary line-clamp-2 hover:text-gray-300"
+        className="md:text-lg text-primary line-clamp-2 hover:text-blue-500"
       >
         {title}
       </Link>
-      <div>Uploaded on: {uploadDate}</div>
-      <div className="font-bold">Author: {author}</div>
+      <div className="hidden md:block">Uploaded on: {uploadDate}</div>
+      <div className="text-xs md:text-sm font-bold">Author: {author}</div>
     </div>
   </div>
 );

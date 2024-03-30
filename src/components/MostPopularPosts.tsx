@@ -40,14 +40,14 @@ export default function MostPopularPosts() {
   ) : (
     <div className="w-full">
       <h1 className="title-text">Most Popular</h1>
-      <div className="py-6 flex flex-col md:flex-row md:gap-8">
+      <div className="py-6 flex flex-col md:flex-row gap-8">
         <BlogImageCard
           title={blogs[0].title}
           slug={blogs[0].$id}
           category={blogs[0].category}
           blogImage={blogService.getImagePreview(blogs[0].blogImage).href}
         />
-        <div className="w-full lg:w-1/2 flex flex-col justify-between">
+        <div className="w-full lg:w-1/2 flex flex-col gap-4 md:gap-0 justify-between">
           {blogs.slice(1).map((post, index) => (
             <BlogList
               key={index}

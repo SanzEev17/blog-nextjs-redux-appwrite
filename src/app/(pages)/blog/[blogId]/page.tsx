@@ -67,24 +67,24 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
     <div>Error: {error}</div>
   ) : (
     <section className="py-20 min-h-screen flex items-center justify-center">
-      <div className="max-w-4xl bg-primary-foreground rounded-lg overflow-hidden shadow-md">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3 px-8 py-6 border-b border-gray-200">
+      <div className="max-w-4xl md:px-8 px-6 bg-primary-foreground rounded-lg overflow-hidden shadow-md">
+        <div className="py-6 flex flex-col-reverse md:flex-row items-center justify-between gap-3 border-b border-gray-200">
           {/* Blog Title */}
           <div className="flex flex-col gap-2">
-            <h1 className="title-text font-bold">{blog.title}</h1>
+            <h1 className="text-xl md:text-3xl font-bold">{blog.title}</h1>
             <Link
               href={`/blog/category/${blog.category}`}
               className="px-2 py-0.5 text-sm capitalize w-fit rounded-full bg-blue-500 text-gray-100 hover:bg-blue-400"
             >
               {blog.category}
             </Link>
-            <div className="text-primary">Author: {blog.author}</div>
-            <div className="text-muted-foreground">
+            <div className="text-primary text-sm md:text-base">Author: {blog.author}</div>
+            <div className="text-muted-foreground text-sm md:text-base">
               Uploaded: {blog.uploadDate}
             </div>
           </div>
           {/* Blog Image */}
-          <div className="w-full max-w-[40%] rounded-md overflow-hidden relative">
+          <div className="w-full md:max-w-[40%] rounded-lg overflow-hidden relative">
             <AspectRatio ratio={5 / 3}>
               <Image
                 src={blogService.getImagePreview(blog.blogImage).href}
@@ -98,7 +98,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
           </div>
         </div>
         {/* Blog Content */}
-        <div className="px-8 py-6">
+        <div className="py-6">
           <p className="text-muted-foreground">{blog.content}</p>
         </div>
         {/* Edit and Delete Buttons */}
