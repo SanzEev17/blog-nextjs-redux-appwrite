@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog Website with Next.js
 
-## Getting Started
+## Introduction
+This is a blog website developed using Next.js version 14 with TypeScript. It leverages the ShadcnUI library for UI components, Redux for state management, and Appwrite for backend services. The website allows users to sign up, log in, create, read, update, and delete blog posts. Users can view popular blogs based on view count, as well as the latest posts. The website also features pages dedicated to displaying blogs by category and author.
 
-First, run the development server:
+## Features
+1. **User Authentication:**
+   - **Sign Up:** Users can create a new account with a unique username and password.
+   - **Log In:** Existing users can log in using their credentials.
+   - **Password Reset:** Functionality to reset forgotten passwords is not yet implemented.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Blog Display:**
+   - **Most Popular Blogs:** Homepage displays popular blogs based on view count.
+   - **Latest Posts:** A component shows the latest blog posts.
+   - **Category Pages:** Pages dedicated to displaying blogs by category.
+   - **Author Pages:** Pages dedicated to displaying blogs by author.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Blog Management:**
+   - **Create:** Logged-in authors can create new blog posts.
+   - **Read:** Users can view blog posts on the website.
+   - **Update:** Authors can update their own blog posts.
+   - **Delete:** Authors can delete their own blog posts.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. **Authorization:**
+   - **Author Permissions:** Authors can only modify their own blog posts and not those of other users.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies Used
+- Next.js 14 with TypeScript
+- React
+- ShadcnUI for UI components
+- Redux for state management
+- Appwrite for backend services
 
-## Learn More
+## Setup Instructions
+1. Clone the repository from [GitHub](https://github.com/SanzEev17/blog-nextjs-redux-appwrite).
+2. Navigate to the project directory.
+3. Install dependencies using `npm install`.
+4. Set up Appwrite backend services and configure the connection details in the project.
+5. Run the development server using `npm run dev`.
+6. Access the website through the provided URL.
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
+- Navigate to the homepage to view popular and latest blog posts.
+- Sign up for a new account or log in with existing credentials.
+- Authors can create, update, and delete their own blog posts.
+- Explore blogs by category or author using dedicated pages.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Known Issues
+- Password reset functionality is not yet implemented.
+- Other minor bugs or issues may be present.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
+Contributions are welcome! Feel free to fork the repository and submit pull requests to suggest improvements or fix issues.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
