@@ -58,7 +58,7 @@ export default function BlogCard({
             </Link>
           </div>
 
-          <CardTitle className="pt-2 text-lg line-clamp-2 hover:text-gray-300">
+          <CardTitle className="pt-2 text-lg line-clamp-2 hover:text-blue-500">
             {title}
           </CardTitle>
         </Link>

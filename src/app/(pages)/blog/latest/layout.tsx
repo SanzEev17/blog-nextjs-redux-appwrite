@@ -1,4 +1,4 @@
-export default function RecentBlogLayout({
+export default function LatestBlogLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

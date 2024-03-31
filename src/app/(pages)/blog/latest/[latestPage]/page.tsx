@@ -1,4 +1,4 @@
-import RecentPosts from "@/components/RecentPosts";
+import LatestPosts from "@/components/LatestPosts";
 import { BlogPagination } from "@/components/utility/BlogPagination";
 import React from "react";
 
@@ -10,7 +10,7 @@ export default function RecentBlogPage({
   const recentPage = Number(params.recentPage);
   return (
     <>
-      <RecentPosts limit={9} offset={(recentPage - 1) * 9} />
+      <LatestPosts limit={9} offset={(recentPage - 1) * 9} />
       <BlogPagination href="/blog/recent" currentPage={recentPage} />
     </>
   );

@@ -9,6 +9,7 @@ interface PopularBlog {
   title: string;
   category: string;
   author: string;
+  userId:string;
   uploadDate: string;
   blogImage: string;
 }
@@ -55,6 +56,7 @@ export default function MostPopularPosts() {
               slug={post.$id}
               category={post.category}
               author={post.author}
+              authorId={post.userId}
               uploadDate={post.uploadDate}
               blogImage={blogService.getImagePreview(post.blogImage).href}
             />

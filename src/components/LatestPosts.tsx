@@ -14,7 +14,7 @@ interface Blog {
   blogImage: string;
   blogViews: number;
 }
-export default function RecentPosts({
+export default function LatestPosts({
   category,
   authorId,
   limit,

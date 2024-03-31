@@ -1,12 +1,12 @@
 "use client";
-import { useAppSelector } from "@/redux/store";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import { useAppSelector } from "@/redux/store";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -14,6 +14,7 @@ import {
 import LogoutBtn from "./LogoutBtn";
 
 export default function NavItems() {
+  const pathname = usePathname();
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated
   );
@@ -22,6 +23,7 @@ export default function NavItems() {
     { title: "Home", slug: "/" },
     { title: "My Blogs", slug: `blog/author/${authorId}` },
     { title: "Create", slug: "blog/create" },
+    { title: "Latest Blogs", slug: "blog/latest" },
   ];
 
   return (
@@ -32,28 +34,21 @@ export default function NavItems() {
           className="hidden px-5 py-2 md:border-2 border-gray-700 rounded-full 
           md:flex flex-col md:flex-row justify-center items-center gap-7"
         >
-          {navItems.map((item) => (
+          {navItems.map((item, index) => (
             <Link
-              key={item.title}
+              key={index}
               href={`/${item.slug}`}
-              className="hover:text-red-600"
+              className={`${
+                pathname === `/${item.slug}`
+                  ? "text-active"
+                  : pathname === item.slug && "text-active"
+              } hover:text-active`}
             >
               {item.title}
             </Link>
           ))}
         </div>
         {/* Mobile View  */}
-        {/* <div className="w-full text-lg md:hidden fixed right-0 top-1/2 transform -translate-y-1/2 bg-primary-foreground flex flex-col justify-center items-center gap-7 h-full">
-          {navItems.map((item) => (
-            <Link
-              key={item.title}
-              href={`/${item.slug}`}
-              className="hover:text-red-600"
-            >
-              {item.title}
-            </Link>
-          ))}
-        </div> */}
         <div className="md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -75,15 +70,22 @@ export default function NavItems() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              {navItems.map((item) => (
-                <>
-                  <DropdownMenuItem key={item.title} asChild>
-                    <Link href={`/${item.slug}`} className="w-full">
+              {navItems.map((item, index) => (
+                <div key={index}>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href={`/${item.slug}`}
+                      className={`${
+                        pathname === `/${item.slug}`
+                          ? "text-active"
+                          : pathname === item.slug && "text-active"
+                      } w-full`}
+                    >
                       {item.title}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                </>
+                </div>
               ))}
               <DropdownMenuItem>
                 <LogoutBtn />

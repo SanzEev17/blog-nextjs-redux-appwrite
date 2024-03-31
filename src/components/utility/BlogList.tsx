@@ -8,6 +8,7 @@ type BlogListProps = {
   slug: string;
   category: string;
   author: string;
+  authorId: string;
   uploadDate: string;
   blogImage: string;
 };
@@ -17,6 +18,7 @@ const BlogList: React.FC<BlogListProps> = ({
   slug,
   category,
   author,
+  authorId,
   uploadDate,
   blogImage,
 }) => (
@@ -51,7 +53,12 @@ const BlogList: React.FC<BlogListProps> = ({
         {title}
       </Link>
       <div className="hidden md:block">Uploaded on: {uploadDate}</div>
-      <div className="text-xs md:text-sm font-bold">Author: {author}</div>
+      <div className="text-xs md:text-sm font-bold">
+        <span>Author:&nbsp;</span>
+        <Link href={`blog/author/${authorId}`} className="hover:text-blue-500">
+          {author}
+        </Link>
+      </div>
     </div>
   </div>
 );
