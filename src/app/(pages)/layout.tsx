@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <main className="px-8 lg:px-48">{children}</main>
+      <main className="px-5 lg:px-48">{children}</main>
     </>
   );
 }

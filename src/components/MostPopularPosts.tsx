@@ -40,7 +40,7 @@ export default function MostPopularPosts() {
     <div>Loading popular posts...</div>
   ) : (
     <div className="w-full">
-      <h1 className="title-text">Most Popular</h1>
+      <h1 className="title-text">Most Popular Blogs</h1>
       <div className="py-6 flex flex-col md:flex-row gap-8">
         <BlogImageCard
           title={blogs[0].title}

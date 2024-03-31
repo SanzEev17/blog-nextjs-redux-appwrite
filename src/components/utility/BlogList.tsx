@@ -24,7 +24,7 @@ const BlogList: React.FC<BlogListProps> = ({
 }) => (
   <div key={title} className="flex flex-row gap-4">
     {/* Blog Image */}
-    <div className="w-full max-w-[40%] min-w-[40%]">
+    <Link href={`/blog/${slug}`} className="w-full max-w-[40%] min-w-[40%]">
       <AspectRatio ratio={4 / 3}>
         <Image
           src={blogImage}
@@ -35,7 +35,7 @@ const BlogList: React.FC<BlogListProps> = ({
         />
         <div className="darker-shade"></div>
       </AspectRatio>
-    </div>
+    </Link>
     {/* Blog Items */}
     <div className="flex flex-col justify-center gap-1 md:gap-2 text-muted-foreground text-sm">
       {/* Blog Category */}

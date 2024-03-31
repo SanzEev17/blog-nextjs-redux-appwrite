@@ -13,7 +13,7 @@ export default function Home() {
       <MostPopularPosts />
       <div className="w-full py-8">
         <div className="flex justify-between items-center">
-          <h1 className="title-text">Latest Posts</h1>
+          <h1 className="title-text">Latest Blogs</h1>
           <Button variant="outline" asChild>
             <Link href="/blog/recent">View all</Link>
           </Button>
