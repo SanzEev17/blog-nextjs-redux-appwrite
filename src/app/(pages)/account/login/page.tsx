@@ -14,6 +14,7 @@ import { login } from "@/redux/features/authSlice";
 import { AppDispatch } from "@/redux/store";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "@/components/utility/FormInput";
+import Link from "next/link";
 
 interface FormInputs {
   email: string;
@@ -53,7 +54,7 @@ export default function LoginPage() {
         <CardHeader>
           <CardTitle className="title-text">Login</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-4">
           <div className="grid w-full items-center gap-4">
             <FormInput
               type="email"
@@ -76,11 +77,17 @@ export default function LoginPage() {
               })}
             />
           </div>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline" type="submit">
+          <Button variant="outline" type="submit" className="w-fit">
             {loading ? "Loading..." : "Login"}
           </Button>
+        </CardContent>
+        <CardFooter className="flex items-center justify-center">
+          <p>
+            Don&apos;t have an account?{" "}
+            <Link href={`/account/signup`} className="text-blue-500">
+              Signup here
+            </Link>
+          </p>
           <div>{error}</div>
         </CardFooter>
       </form>

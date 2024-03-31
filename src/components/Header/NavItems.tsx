@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import LogoutBtn from "./LogoutBtn";
+import { DarkModeToggle } from "../utility/DarkModeToggle";
 
 export default function NavItems() {
   const pathname = usePathname();
@@ -87,8 +88,9 @@ export default function NavItems() {
                   <DropdownMenuSeparator />
                 </div>
               ))}
-              <DropdownMenuItem>
+              <DropdownMenuItem className="flex justify-between">
                 <LogoutBtn />
+                <DarkModeToggle />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

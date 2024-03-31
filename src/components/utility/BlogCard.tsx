@@ -38,8 +38,8 @@ export default function BlogCard({
   return (
     <Card>
       <CardHeader>
-        <Link href={`/blog/${$id}`}>
-          <div className="w-full h-full md:max-w-80 rounded-md overflow-hidden relative">
+        <div className="w-full h-full md:max-w-80 rounded-md overflow-hidden relative">
+          <Link href={`/blog/${$id}`}>
             <AspectRatio ratio={5 / 3}>
               <Image
                 src={blogImage}
@@ -50,14 +50,16 @@ export default function BlogCard({
               />
               <div className="darker-shade"></div>
             </AspectRatio>
-            <Link
-              href={`/blog/category/${category}`}
-              className="px-2 py-0.5 absolute bottom-2 left-2 uppercase text-xs font-bold border bg-primary-foreground hover:bg-gray-800 rounded-full"
-            >
-              {category}
-            </Link>
-          </div>
+          </Link>
+          <Link
+            href={`/blog/category/${category}`}
+            className="px-2 py-0.5 absolute bottom-2 left-2 uppercase text-xs font-bold border bg-primary-foreground hover:bg-accent rounded-full"
+          >
+            {category}
+          </Link>
+        </div>
 
+        <Link href={`/blog/${$id}`}>
           <CardTitle className="pt-2 text-lg line-clamp-2 hover:text-blue-500">
             {title}
           </CardTitle>
